@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆信息页面</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div style="width:800px;height:100%;margin-left:270px;">
+    <form action="/car/add" method="post">
+        车牌号码：<input class="form-control" type="text" th:value="${plateNum}" name="plateNum"><br>
+        车架号：  <input class="form-control" type="text" th:value="${vehicleNum}" name="vehicleNum"><br>
+        发动号：  <input class="form-control" type="text" th:value="${engineNum}" name="engineNum"><br>
+        <!--初登日期：<input class="form-control" type="text" th:value="${firstDate}" name="firstDate"><br>-->
+        购车价值：<input class="form-control" type="text" th:value="${carValue}" name="carValue"><br>
+        <button class="btn btn-info">下一步</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.server.dao.InsureMapper">
+
+    <resultMap id="BaseResultMap" type="com.fulan.server.model.InsureVo">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="certType" jdbcType="VARCHAR" property="certType"/>
+        <result column="certId" jdbcType="VARCHAR" property="certId"/>
+        <result column="phoneNum" jdbcType="VARCHAR" property="phoneNum"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="vehicleNum" jdbcType="VARCHAR" property="vehicleNum"/>
+    </resultMap>
+
+    <insert id="addInsure" parameterType="com.fulan.server.model.Insure">
+       INSERT INTO
+       		insure
+       		(userName,vehicleNum,certType,certId,phoneNum,address,email)
+       	VALUES
+       		(#{userName}, #{vehicleNum},#{certType},#{certId},#{phoneNum},#{address},#{email})
+    </insert>
+
+    <!--<update id="updateInsureByvehicleNum" parameterType="com.fulan.server.model.Insure">-->
+    <!--update car set vehicleNum=#{vehicleNum},userName=#{userName},certType=#{certType},certId=#{certId},phoneNum=#{phoneNum},address=#{address},email=#{email} where vehicleNum=#{vehicleNum}-->
+
+    <!--</update>-->
+    <select id="selectALlInsureInfo" resultType="InsureVo">
+
+        select * from insure ins left join car ca on ins.vehicleNum=ca.vehicleNum
+    </select>
+
+</mapper>

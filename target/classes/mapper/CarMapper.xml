@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fulan.server.dao.CarMapper">
+
+    <resultMap id="BaseResultMap" type="com.fulan.server.model.Car">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="plateNum" jdbcType="VARCHAR" property="plateNum"/>
+        <result column="vehicleNum" jdbcType="VARCHAR" property="vehicleNum"/>
+        <result column="firstDate" jdbcType="TIMESTAMP" property="firstDate"/>
+        <result column="carValue" jdbcType="VARCHAR" property="carValue"/>
+    </resultMap>
+
+    <select id="findCarByengineNumCount" parameterType="com.fulan.server.model.Car"
+            resultType="java.lang.Integer">
+        select count(*) from car where vehicleNum = #{vehicleNum}
+    </select>
+
+    <select id="findCarInfoByengineNum" parameterType="com.fulan.server.model.Car"
+            resultType="com.fulan.server.model.Car">
+        select * from car where vehicleNum = #{vehicleNum}
+    </select>
+
+
+    <insert id="addCar" parameterType="com.fulan.server.model.Car">
+       INSERT INTO
+       		car
+       		(plateNum,vehicleNum,engineNum,firstDate,carValue)
+       	VALUES
+       		(#{plateNum}, #{vehicleNum},#{engineNum},#{firstDate},#{carValue})
+    </insert>
+
+    <update id="updateCarInfoByvehicleNum" parameterType="com.fulan.server.model.Car">
+
+        update car set plateNum=#{plateNum},
+        vehicleNum=#{vehicleNum},
+        engineNum=#{engineNum},
+        firstDate=#{firstDate},
+        carValue=#{carValue}
+
+        <where>
+            <if test='vehicleNum != null and vehicleNum != ""'>
+            vehicleNum=#{vehicleNum}
+            </if>
+        </where>
+    </update>
+
+
+</mapper>
