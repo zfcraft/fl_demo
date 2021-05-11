@@ -26,18 +26,13 @@ public class InsureController {
     @RequestMapping("/add")
     public Object add(@RequestBody Insure insure) {
         ModelAndView mv = new ModelAndView();
-//        insure.setVehicleNum("chen1");
-//        System.out.println("insure.getCertType() = " + insure.getCertType());
-//        System.out.println("insure.getUserName() = " + insure.getUserName());
-//        System.out.println("insure.phoneNum() = " + insure.getPhoneNum());
         String date;
         date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-
         int count = insureServiceImp.findInsureByvehicleNumCount(insure);
-        if (count>0){
+        if (count > 0) {
             int updateCount = insureServiceImp.updateInsureByvehicleNum(insure);
 
-            if (updateCount>0){
+            if (updateCount > 0) {
                 System.out.println("updateCount = " + updateCount);
 
                 mv.setViewName("insureInfo");
@@ -45,7 +40,7 @@ public class InsureController {
 //                System.out.println("vehicleNum = " + vehicleNum);
                 return insure;
             }
-        }else {
+        } else {
 
             int insertCount = insureServiceImp.addInsure(insure);
             if (insertCount > 0) {
@@ -54,7 +49,6 @@ public class InsureController {
                 return insure;
             }
         }
-
 
         mv.setViewName("error");
         return insure;

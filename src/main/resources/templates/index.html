@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!--<link href="/css/bootstrap.css" rel="stylesheet">-->
+    <script th:src="@{/jquery.2.1.4.min.js}"></script>
+</head>
+
+<body>
+
+<div style="width:800px;height:100%;margin-left:270px;">
+    <form>
+
+        <div>
+        <select class="form-control" name="cid">
+            <option>请选择班级</option>
+            <option  th:each="list:${session.list}" th:value="${list.cid}" th:text="${list.cname }"></option>
+        </select>
+</div>
+
+    </form>
+</div>
+
+
+</body>
+
+
+
+
+</html>
